@@ -82,7 +82,7 @@ var app = {
 	//callback for phone being offline
 	phoneOffline: function() {
 		navigator.notification.alert("You have no data connection; this will be a problem for uploading data!");
-		console.log("offline!");
+		//console.log("offline!");
 		document.addEventListener("online", app.phoneOnline, false);
 		document.addEventListener("offline", app.phoneOnline, false);
 	},
@@ -90,7 +90,7 @@ var app = {
 	//callback for phone being online
 	phoneOnline: function() {
 		navigator.notification.alert("Hey, your phone is online again; excellent!");
-		console.log("online!");
+		//console.log("online!");
 		document.removeEventListener("online", app.phoneOnline, false);
 		document.addEventListener("offline", app.phoneOffline, false);
 	},
@@ -128,7 +128,7 @@ var app = {
 			//console.log(data);
 			//$("#data").val($("#data").val() + data + "\n");
 			var data_split = data.split(",");
-			console.log(data_split);
+			//console.log(data_split);
 			if (data_split.length == 4 && (data_split[1].indexOf("timestamp") == -1)) {
 				var timeStr = $.trim(data_split[1]);
 				timeStr = timeStr.substr(1, timeStr.length -2);
@@ -160,10 +160,10 @@ var app = {
 					if (result != null && result.rows != null) {
 						for (var i = 0; i < result.rows.length; i++) {
 							var row = result.rows.item(i);
-							console.log('row: ' + i + ": " + row.sensor_id + '. ' + row.data + ' ' + row.timestamp);
+							//console.log('row: ' + i + ": " + row.sensor_id + '. ' + row.data + ' ' + row.timestamp);
 							if (row.timestamp.length >= 10) {
 								$.post("http://www.communitysensors.rpi.edu/sensor-maps/new_store_data.php", { c_sensor_id: row.sensor_id, c_user_temp: row.data, c_date_time: row.timestamp}, function(data) {
-									console.log(data);
+									//console.log(data);
 								});
 							} else {
 								console.log("previous row is bad timestamp");
