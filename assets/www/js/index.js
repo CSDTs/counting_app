@@ -164,6 +164,8 @@ var app = {
 							if (row.timestamp.length >= 10) {
 								$.post("http://www.communitysensors.rpi.edu/sensor-maps/new_store_data.php", { c_sensor_id: row.sensor_id, c_user_temp: row.data, c_date_time: row.timestamp}, function(data) {
 									//console.log(data);
+								}).fail(function() {
+									alert( "$.post failed!" );
 								});
 							} else {
 								console.log("previous row is bad timestamp");
